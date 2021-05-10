@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 16px Arial;
+        }
+
+        /*the container must be positioned relative:*/
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            border: 1px solid transparent;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+            input[type=text] {
+                background-color: #f1f1f1;
+                width: 50%;
+            }
+
+            input[type=submit] {
+                background-color: DodgerBlue;
+                color: #fff;
+                cursor: pointer;
+            }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+            .autocomplete-items div {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #fff;
+                border-bottom: 1px solid #d4d4d4;
+            }
+
+                /*when hovering an item:*/
+                .autocomplete-items div:hover {
+                    background-color: #e9e9e9;
+                }
+
+        /*when navigating through the items using the arrow keys:*/
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+
+        h1 {
+            background-color: dodgerblue;
+            color: white;
+            border-radius: 5px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fenix Edu System</h1>
+    <h2><a href="{{ url_for('index')}}">Home</a></h2>
+    <hr />
+
+    {%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {%- endfor %}
+
+    <form action="{{ request.path }}" method="post">
+        <label for="call_number">Call Number</label><br>
+        <input type="text" name="call_number" placeholder="Call Number" /><br>
+        <label for="item_type">Item Type</label><br>
+        <input type="text" name="item_type" placeholder="Item Type" /><br>
+        <label for="description">Description</label><br>
+        <input type="text" name="description" placeholder="Description"><br>
+        <label for="address">Address</label><br>
+        <input type="text" name="address" placeholder="Address" /><br>
+        <label for="mobile">Mobile</label><br>
+        <input type="text" name="mobile" placeholder="Mobile" /><br>
+        <label for="work">Work</label><br>
+        <input type="text" name="work" placeholder="Work" /><br>
+        <label for="reported_date">Reported Date</label><br>
+        <input type="date" name="reported_date" placeholder="Reported Date"><br>
+        <label for="attended_date">Attended Date</label><br>
+        <input type="date" name="attended_date" placeholder="Attended Date"><br>
+        <label for="remarks">Remarks</label><br>
+        <input type="text" name="remarks" placeholder="Remarks"><br>
+        <label for="status">Status</label><br>
+        <input type="text" name="status" placeholder="Status"><br>
+        <label for="closed_date">Closed Date</label><br>
+        <input type="date" name="closed_date" placeholder="Closed Date"><br>
+        <input type="submit" value="Submit" />
+    </form>
+
+</body>
+</html>
